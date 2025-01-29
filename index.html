@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dudd esht kharch advu </title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container{
+            max-width: 600px;
+            margin:0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: aliceblue;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            
+        }
+
+        input[type="text"],select,input[type=number],input[type="submit"]
+        {
+            margin-bottom: 10px;
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            box-sizing:border-box;
+
+        }
+
+        input[type="submit"]
+        {
+            background-color: rgb(12, 87, 161);
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+        }
+        input[type="submit"]:hover{
+            background-color: rgb(8, 194, 246);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+
+        }
+        th,td{
+            border:1px solid #ccc;
+            padding:10px;
+            text-align:left;
+        }
+
+        th{
+            background-color:rgb(12, 87, 161);
+            color:while;
+        }
+        
+    </style>
+</head>
+<body>
+
+  
+    <div class="container">
+        <form id = "expform">
+            <h1 style="text-align: center"> Expense tracker </h1>
+           
+            <input type="text" id="description" placeholder="Expense name" required>
+           <br>
+            <select id="category" required>
+                <option value="">select category</option>
+                <option value="food">food</option>
+                <option value="pgfees">pgfees</option>
+                <option value="clothes">online shopping</option>
+                <option value="wana kharch"> wana kharch</option>
+                <option value="others">others</option>
+
+            </select>
+            <br>
+            <input type="number" id="amount" placeholder="amount" required>
+            <br>
+            <input type="submit" value="Add Expense">
+            
+            <h1 style="text-align: center"> Total Expenses</h1>
+
+            <table id="expense-table">
+                <thead>
+                    <tr>
+                        <th>
+                            description
+                        </th>
+                        <th>
+                            category
+                        </th>
+                        <th>
+                           amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="explist">
+
+                </tbody>
+
+            </table>
+
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('expform')
+        const explist = document.getElementById('explist')
+
+
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+            const description = document.getElementById('description').value;
+            const category = document.getElementById('category').value;
+            const amount = document.getElementById('amount').value;
+
+            if(description && category && !isNaN(amount)){
+                const newrow = document.createElement('tr');
+
+                newrow.innerHTML = `<td>${description}</td>
+                <td>${category}</td>
+                <td>${amount}</td>`;
+                explist.appendChild(newrow);
+                document.getElementById('description').value = '';
+            document.getElementById('category').value = '';
+            document.getElementById('amount').value = '';
+
+
+            }else{
+                alert('please fill all the data and then try');
+            }
+            
+            
+        })
+    </script>
+
+</body>
+</html>
